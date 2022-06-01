@@ -1,2 +1,2 @@
-# DIS Project : Animal Shelter
+# Simple web application used flask + python + progreSQL
 
