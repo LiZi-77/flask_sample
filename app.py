@@ -12,14 +12,17 @@ app = Flask(__name__)
 #Routes
 @app.route('/')
 def index():
-    user = User.query.first()
     movies = Movie.query.all()
-    return render_template('index.html', user=user, movies=movies)
+    return render_template('index.html', movies=movies)
 
-@app.errorhandler(404)  # 传入要处理的错误代码
-def page_not_found(e):  # 接受异常对象作为参数
+@app.errorhandler(404)  
+def page_not_found(e):  
+    return render_template('404.html'), 404  
+
+@app.context_processor
+def inject_user():  
     user = User.query.first()
-    return render_template('404.html', user=user), 404  # 返回模板和状态码
+    return dict(user=user)  
 
 #Database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:22055@localhost/flask_sample'
