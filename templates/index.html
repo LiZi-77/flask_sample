@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.name }}'s homepage</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+</head>
+<body>
+    <h2>
+        <img alt="Avatar" class = "avatar" src="{{ url_for('static', filename='images/avatar.png') }}">
+        {{ user.name }}'s Watchlist
+    </h2>
+    <p>{{ movies|length }} Titles</p>
+    <ul class="movie-list">
+        {% for movie in movies %}
+        <li>{{ movie.title }} - {{ movie.year }}</li>
+        {% endfor %}
+    </ul>
+    <img alt="Walking Totoro" class = "totoro" src="{{ url_for('static', filename='images/totoro.gif') }}">
+    <footer>
+        <small>&copy; 2018 <a href="http://helloflask.com/tutorial">HelloFlask</a></small>
+    </footer>
+</body>
+</html>
